@@ -12,14 +12,8 @@
 
 ## Índice
 
-- [Lab 0 - Introducción a Verilog, Simulación y Máquinas de Estados Finitos (FSM)](#lab-0---introducción-a-verilog-simulación-y-máquinas-de-estados-finitos-fsm)
-    - [Integrantes 2026 - 2](#integrantes-2026---2)
-  - [Índice](#índice)
-  - [Punto 1](#punto-1)
+- [Punto 1](#punto-1)
   - [Diseño implementado](#diseño-implementado)
-    - [Ana](#ana)
-    - [Diana](#diana)
-    - [Nicolás](#nicolás)
   - [Simulaciones](#simulaciones)
   - [Implementación](#implementación)
   - [Conclusiones](#conclusiones)
@@ -36,7 +30,7 @@ Cada uno hizo un diseño diferente, pero el que se va a implementar en Verilog s
 
 <img src="assets/fsmAna.png" width="600">
 
-**Figura 1.** ASM.
+**Figura 1.** FSM.
 
 > Si el reset vale 1, regresa al estado `S0`.
 
