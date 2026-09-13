@@ -1,0 +1,459 @@
+$date
+	Sun Sep 13 16:52:11 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module TBsuperior $end
+$var wire 1 ! done $end
+$var wire 6 " acumulado [5:0] $end
+$var reg 1 # CLK $end
+$var reg 2 $ operacion [1:0] $end
+$var reg 1 % parar $end
+$var reg 1 & reset $end
+$var reg 1 ' start $end
+$var reg 4 ( x [3:0] $end
+$scope module uut $end
+$var wire 1 # CLK $end
+$var wire 2 ) operacion [1:0] $end
+$var wire 1 % parar $end
+$var wire 1 & reset $end
+$var wire 1 ' start $end
+$var wire 4 * x [3:0] $end
+$var wire 1 + done2 $end
+$var wire 1 , done1 $end
+$var wire 1 - done0 $end
+$var wire 6 . acumulado2 [5:0] $end
+$var wire 6 / acumulado1 [5:0] $end
+$var wire 6 0 acumulado0 [5:0] $end
+$var reg 6 1 acumulado [5:0] $end
+$var reg 4 2 conection [3:0] $end
+$var reg 1 ! done $end
+$scope module Acc20 $end
+$var wire 1 # CLK $end
+$var wire 1 % parar $end
+$var wire 1 & reset $end
+$var wire 1 3 start $end
+$var wire 4 4 x [3:0] $end
+$var wire 6 5 add [5:0] $end
+$var reg 6 6 acumulado [5:0] $end
+$var reg 1 + done $end
+$var reg 2 7 estado [1:0] $end
+$upscope $end
+$scope module Acc3 $end
+$var wire 1 # clk $end
+$var wire 1 & rst $end
+$var wire 1 8 start $end
+$var wire 1 % stop $end
+$var wire 4 9 x [3:0] $end
+$var parameter 2 : ADD $end
+$var parameter 2 ; DONE $end
+$var parameter 2 < IDLE $end
+$var parameter 2 = LOAD $end
+$var parameter 32 > NUM_SUMAS $end
+$var reg 6 ? acc [5:0] $end
+$var reg 2 @ contador [1:0] $end
+$var reg 1 - done $end
+$var reg 2 A estado [1:0] $end
+$var reg 2 B sig_estado [1:0] $end
+$upscope $end
+$scope module Acc4 $end
+$var wire 1 # CLK $end
+$var wire 1 & reset $end
+$var wire 1 C start $end
+$var wire 1 % stop $end
+$var wire 4 D x [3:0] $end
+$var parameter 2 E HOLD $end
+$var parameter 2 F IDL $end
+$var parameter 2 G SUMAR $end
+$var reg 6 H acumulador [5:0] $end
+$var reg 2 I cuenta [1:0] $end
+$var reg 1 , done $end
+$var reg 2 J estado [1:0] $end
+$var reg 6 K sum [5:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module TBtop $end
+$var wire 6 L sum [5:0] $end
+$var wire 1 M done $end
+$var reg 1 N CLK $end
+$var reg 1 O reset $end
+$var reg 1 P start $end
+$var reg 1 Q stop $end
+$var reg 4 R x [3:0] $end
+$scope module uut $end
+$var wire 1 N CLK $end
+$var wire 1 O reset $end
+$var wire 1 P start $end
+$var wire 1 Q stop $end
+$var wire 4 S x [3:0] $end
+$var parameter 2 T HOLD $end
+$var parameter 2 U IDL $end
+$var parameter 2 V SUMAR $end
+$var reg 6 W acumulador [5:0] $end
+$var reg 2 X cuenta [1:0] $end
+$var reg 1 M done $end
+$var reg 2 Y estado [1:0] $end
+$var reg 6 Z sum [5:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b0 V
+b10 U
+b1 T
+b1 G
+b0 F
+b10 E
+b11 >
+b1 =
+b0 <
+b11 ;
+b10 :
+$end
+#0
+$dumpvars
+b0 Z
+b10 Y
+b0 X
+b0 W
+b11 S
+b11 R
+0Q
+0P
+1O
+0N
+0M
+b0 L
+b0 K
+b0 J
+b0 I
+b0 H
+b0 D
+0C
+b0 B
+b0 A
+b0 @
+b0 ?
+b0 9
+08
+b0 7
+b0 6
+b0 5
+b0 4
+03
+b0 2
+b0 1
+b0 0
+b0 /
+b0 .
+0-
+0,
+0+
+b0 *
+b0 )
+b0 (
+0'
+1&
+0%
+b0 $
+0#
+b0 "
+0!
+$end
+#5000
+1N
+1#
+#10000
+0N
+0#
+#15000
+b0 Y
+1N
+1#
+1P
+0O
+#20000
+0&
+0N
+0#
+#25000
+b1 X
+b11 W
+1N
+1#
+#30000
+b1 B
+18
+b1 2
+1'
+b101 5
+b101 (
+b101 *
+b101 4
+b101 9
+b101 D
+0N
+0#
+#35000
+b10 B
+b10 X
+b110 W
+b1 A
+1N
+1#
+#40000
+08
+b0 2
+0'
+0N
+0#
+#45000
+b11 X
+b1001 W
+b10 A
+1N
+1#
+#50000
+0N
+0#
+#55000
+b101 "
+b101 1
+b1 Y
+b1100 L
+b1100 Z
+b1100 W
+b1 @
+b101 0
+b101 ?
+1N
+1#
+#60000
+0N
+0#
+#65000
+b1010 "
+b1010 1
+b10 @
+b1010 0
+b1010 ?
+1N
+1#
+#70000
+0N
+0#
+#75000
+b11 B
+b1111 "
+b1111 1
+b11 @
+b1111 0
+b1111 ?
+1N
+1#
+#80000
+0N
+0#
+#85000
+b11 A
+1N
+1#
+#90000
+b0 B
+b0 "
+b0 1
+b0 A
+b0 @
+b0 0
+b0 ?
+b11 5
+b11 (
+b11 *
+b11 4
+b11 9
+b11 D
+1&
+0N
+0#
+#95000
+1N
+1#
+#100000
+0N
+0#
+#105000
+1N
+1#
+#110000
+0&
+0N
+0#
+#115000
+1N
+1#
+#120000
+1C
+b10 2
+1'
+b1 $
+b1 )
+0N
+0#
+#125000
+b1 J
+1N
+1#
+#130000
+0C
+b0 2
+0'
+0N
+0#
+#135000
+b11 "
+b11 1
+b1 I
+b11 /
+b11 K
+b11 H
+1N
+1#
+#140000
+1%
+0N
+0#
+#145000
+1!
+b10 J
+1,
+1N
+1#
+#150000
+0%
+0N
+0#
+#155000
+1N
+1#
+#160000
+13
+0!
+b0 "
+b0 1
+b100 2
+1'
+b10 $
+b10 )
+0N
+0#
+#165000
+b1 7
+1N
+1#
+#170000
+03
+b0 2
+0'
+0N
+0#
+#175000
+b10 7
+1N
+1#
+#180000
+0N
+0#
+#185000
+b11 "
+b11 1
+b11 .
+b11 6
+1N
+1#
+#190000
+0N
+0#
+#195000
+b110 "
+b110 1
+b110 .
+b110 6
+1N
+1#
+#200000
+0N
+0#
+#205000
+b1001 "
+b1001 1
+b1001 .
+b1001 6
+1N
+1#
+#210000
+0N
+0#
+#215000
+b1100 "
+b1100 1
+b1100 .
+b1100 6
+1N
+1#
+#220000
+0N
+0#
+#225000
+b1111 "
+b1111 1
+b1111 .
+b1111 6
+1N
+1#
+#230000
+0N
+0#
+#235000
+b10010 "
+b10010 1
+b10010 .
+b10010 6
+1N
+1#
+#240000
+0N
+0#
+#245000
+b10101 "
+b10101 1
+b10101 .
+b10101 6
+1N
+1#
+#250000
+0N
+0#
+#255000
+1!
+1+
+b11 7
+1N
+1#
+#260000
+0N
+0#
+#265000
+0!
+0+
+b0 7
+1N
+1#
+#270000
+0N
+0#
