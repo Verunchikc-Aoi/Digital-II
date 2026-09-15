@@ -1,0 +1,33 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Sep 13 22:00:34 2026
+[*]
+[dumpfile] "C:\Users\angry\OneDrive\Nacional\SEMESTRE VI\Electrónica Digital II\Laboratorios\Lab 0\Iverilog\Ejer3\Ejer3\TBtop3.vcd"
+[savefile] "C:\Users\angry\OneDrive\Nacional\SEMESTRE VI\Electrónica Digital II\Laboratorios\Lab 0\Iverilog\Ejer3\Señal.gtkw"
+[timestart] 0
+[size] 1855 1057
+[pos] -217 -217
+*-16.605801 29400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TBtop3.
+[sst_width] 197
+[signals_width] 166
+[sst_expanded] 1
+[sst_vpaned_height] 314
+@28
+TBtop3.CLK
+TBtop3.reset
+TBtop3.start
+@24
+TBtop3.uut.estado[1:0]
+@28
+TBtop3.data[7:0]
+TBtop3.uut.shift_reg[7:0]
+@24
+TBtop3.uut.bit_count[2:0]
+TBtop3.uut.tick_cnt[2:0]
+@28
+TBtop3.tx
+TBtop3.busy
+TBtop3.done
+[pattern_trace] 1
+[pattern_trace] 0
