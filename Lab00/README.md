@@ -33,6 +33,15 @@
       - [Diana](#diana-2)
       - [Nicolás](#nicolás-2)
   - [Punto 3](#punto-3)
+    - [Diseño implementado](#diseño-implementado-2)
+      - [Ana](#ana-3)
+      - [Diana](#diana-3)
+      - [Nicolás](#nicolás-3)
+    - [Simulaciones](#simulaciones-2)
+      - [Ana](#ana-4)
+      - [Diana](#diana-4)
+      - [Nicolás](#nicolás-4)
+    - [Implementación](#implementación-2)
   - [Conclusiones](#conclusiones)
   - [Código punto 1](#código-punto-1)
   - [Código punto 2](#código-punto-2)
@@ -111,7 +120,7 @@ Además se agregó un registro de control `C`, un contador que se incrementa en 
 
 Cada estado se comporta de manera autónoma durante un ciclo de reloj y se puede mapear directamente dentro de un bloque always @(*) para la lógica de transición o en las asignaciones de registros.
 
-El código está en la parte de abajo y el la carpeta códigos.
+El código está en la parte de abajo y en la carpeta códigos.
 
 
 ## Punto 2
@@ -214,11 +223,89 @@ Cada uno es un archivo separado, que se van a llamar desde uno solo: [Superior](
 En ese archivo se van agregar un selector de operación (`operacion`), en el cual el usuario puede elegir entre alguno de los 3 acumuladores. 
 
 
-El código está en la parte de abajo y el la carpeta códigos.
+El código está en la parte de abajo y en la carpeta códigos.
 
 
 ## Punto 3
 
+### Diseño implementado
+
+Cada uno hizo su diseño, pero al ser muy especifico el ejercicio, se llego a casi lo mismo.
+
+El único cambio nolable fue que en uno se uso el `bit_count` para recorrer `shift_ref`, mientras en otro `>>1`.
+
+#### Ana 
+<img src="assets/punto3A.png" width="600">
+
+
+#### Diana
+
+<img src="assets/.png" width="600">
+
+#### Nicolás
+
+<img src="assets/punto3N.png" width="600">
+
+### Simulaciones
+
+Se realizó una simulación en Verilog mediante un testbench. 
+
+Para este último caso tenemos las siguientes señales:
+
+`clk`: señal de reloj utilizada para sincronizar el funcionamiento del circuito.
+
+`rst`: señal utilizada para inicializar el sistema.
+
+`start`: señal utilizada para inicializar el sistema.
+
+Los 4 diferentes estados: `IDLE`, `LOAD`, `TRANSMIT` y `DONE`.
+
+`data_in` y `shift_reg`: que es el número de entarda y su copia.
+
+`bit_count` = un contador que va de 0 a 7, representando el tamaño del bit que entra.
+
+`tick_cnt` = un contador de tamaño `$clog2(CLKS_PER_BIT)-1`, el cual se encarga de estar en cada bit una cierta cantidad de ciclos.
+
+`tx` = es el valor del bit actual, y además, cuando esta en el estado de `IDLE` funciona como una línea de reposo.
+
+`busy` = señal que indica cuando se esta transmitiendo.
+
+`done` = salida que indica que ya se ha terminado la operación.
+
+La captura de GTKWave muestra el comportamiento temporal de las señales y permite evidenciar las transiciones entre los estados.
+
+#### Ana 
+
+![Simulación en GTKWave](assets/waveApunto31.png)
+
+![Simulación en GTKWave](assets/waveApunto32.png)
+
+![Simulación en GTKWave](assets/waveApunto33.png)
+
+![Simulación en GTKWave](assets/waveApunto34.png)
+
+
+#### Diana
+
+
+
+#### Nicolás
+
+
+
+
+### Implementación
+
+Tenemos una maquina de estados finitos algorítmica con 4 estados principales:
+
+- IDLE =
+- LOAD =
+- TRANSMIT =
+- DONE =
+  
+
+
+El código está en la parte de abajo y en la carpeta códigos.
 
 ## Conclusiones
 
