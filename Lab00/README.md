@@ -85,6 +85,8 @@ Para este ejercicio se implementó una máquina de Moore, ya que esta es la opci
 
 #### Tabla de transición
 
+<img src="assets/Tabla_semaforo_diana.png" width="600">
+
 #### 1.5 Visualización en GTKWave
 
 Las señales obtenidas con este [código](codigos/punto1/Mar/) fueron:
