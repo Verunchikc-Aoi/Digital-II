@@ -91,7 +91,7 @@ Para este ejercicio se implementó una máquina de Moore, ya que esta es la opci
 
 Las señales obtenidas con este [código](codigos/punto1/Mar/) fueron:
 
-<img src="assets/punto1M.png" width="600">
+<img src="assets/Simulacion_semaforo_diana.png" width="600">
 
 
 #### Nicolás
