@@ -316,7 +316,7 @@ La captura de GTKWave muestra el comportamiento temporal de las señales y permi
 
 #### Diana
 
-
+![Simulación en GTKWave](assets/Simulacion_transmisor_diana.png)
 
 #### Nicolás
 
