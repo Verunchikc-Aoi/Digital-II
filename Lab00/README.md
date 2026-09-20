@@ -264,6 +264,8 @@ El único cambio notable fue que en uno se usó el `bit_count` para recorrer `sh
 
 #### Diana
 
+#### 1.1 Diagrama de estados:
+
 <img src="assets/.png" width="600">
 
 #### Nicolás
