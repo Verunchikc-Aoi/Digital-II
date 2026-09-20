@@ -158,7 +158,7 @@ Para este se dividió el punto entre los 3 integrantes, cada uno encargado de re
 
 #### Diana
 #### 1.1  Máquina de estado seleccionada:
-Para este ejercicio se implementó una máquina de Estados con Datapath basada en un modelo de Moore, la cual es la solución más idónea para este diseño porque separa eficientemente la lógica de control de las operaciones matemáticas, resultando en un sistema organizado y escalable. Al utilizar el modelo de Moore, las acciones del acumulador dependen exclusivamente del estado actual y del reloj, lo que garantiza una ejecución sincrónica estable y evita pulsos erróneos (glitches) si las entradas como start o cancel cambian de forma asíncrona.
+Para este ejercicio se implementó una máquina de Estados con Datapath basada en un modelo de Moore, la cual es la solución más idónea para este diseño porque separa la lógica de control de las operaciones matemáticas, resultando en un sistema escalable. Al utilizar el modelo de Moore, las acciones del acumulador dependen exclusivamente del estado actual y del reloj, lo que garantiza una ejecución sincrónica estable y evita pulsos erróneos (glitches) si las entradas como start o cancel (stop) cambian de forma asíncrona.
 #### 1.2 Estados 
 -  S0= Inactivo
 -  S1= Carga
