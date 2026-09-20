@@ -157,8 +157,20 @@ Para este se dividió el punto entre los 3 integrantes, cada uno encargado de re
 
 
 #### Diana
+#### 1.1  Máquina de estado seleccionada:
+Para este ejercicio se implementó una máquina de Estados con Datapath basada en un modelo de Moore, la cual es la solución más idónea para este diseño porque separa eficientemente la lógica de control de las operaciones matemáticas, resultando en un sistema organizado y escalable. Al utilizar el modelo de Moore, las acciones del acumulador dependen exclusivamente del estado actual y del reloj, lo que garantiza una ejecución sincrónica estable y evita pulsos erróneos (glitches) si las entradas como start o cancel cambian de forma asíncrona.
+#### 1.2 Estados 
+-  S0= Inactivo
+-  S1= Carga
+-  S2= Agregar
+-  S3= Hecho
+#### 1.3 Salidas
+- Z1= Acc
+- Z2= Done
+#### 1.4 Diagrama de estados:
 
-<img src="assets/asmMpunto2.png" width="600">
+<img src="assets/Acumulador_diana.jpg" width="600">
+Acotación: En el código la variable stop=cancel, solo que se dio una asignación diferente en el diagrama.
 
 #### Nicolás
 
