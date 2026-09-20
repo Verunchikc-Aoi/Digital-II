@@ -67,6 +67,19 @@ Para este se realizaron las tablas de transición, que se pueden encontrar [aqu�
 
 
 #### Diana
+#### 1.1 Máquina de estado seleccionada:
+Para este ejercicio se implementó una máquina de Moore, ya que esta es la opción más segura y estable para un semáforo porque las salidas dependen exclusivamente del estado actual, aislando las luces de cualquier fluctuación en las entradas. A diferencia del modelo de Mealy (donde un cambio temporal o ruido en las señales de entrada podría hacer parpadear los focos en el mundo real), el modelo de Moore garantiza que los colores se mantengan constantes y solo cambien de forma síncrona al transicionar al siguiente estado. 
+
+#### 1.2  Estados 
+- S0= Verde
+- S1= Amarillo 1
+- S2= Rojo
+- S3= Amarillo 2
+#### 1.3 Salidas
+- Z1= Green
+- Z2= Yellow
+- Z3= Red
+#### 1.4 Diagrama de estados:
 
 <img src="assets/punto1asmM.png" width="600">
 
