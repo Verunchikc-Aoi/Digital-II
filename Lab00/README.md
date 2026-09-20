@@ -81,7 +81,11 @@ Para este ejercicio se implementó una máquina de Moore, ya que esta es la opci
 - Z3= Red
 #### 1.4 Diagrama de estados:
 
-<img src="assets/punto1asmM.png" width="600">
+<img src="assets/Semaforo_diana.jpg" width="600">
+
+#### Tabla de transición
+
+#### 1.5 Visualización en GTKWave
 
 Las señales obtenidas con este [código](codigos/punto1/Mar/) fueron:
 
