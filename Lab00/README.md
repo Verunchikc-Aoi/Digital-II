@@ -266,7 +266,10 @@ El único cambio notable fue que en uno se usó el `bit_count` para recorrer `sh
 
 #### 1.1 Diagrama de estados:
 
-<img src="assets/.png" width="600">
+<img src="assets/Transmisor_diana.jpg" width="600">
+
+#### Acotación: 
+En este diseño se implementaron los estados BIT_HOLD y SHIFT_NEXT, sin embargo estos pueden resumirse en un único estado llamado TRANSMIT.
 
 #### Nicolás
 
