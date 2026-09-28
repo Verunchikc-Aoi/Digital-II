@@ -1,2 +1,61 @@
-A tener en cuenta: 
+# Laboratorio 01 FPGA Zybo Z7 Vivado Vitis y Validación de Hardware
+
+<hr style="height: 4px; border: none; background-color: #c0f0f4;">
+
+### Integrantes 2026 - 2
+
+**Grupo 4**
+
+- Ana Lucía Molina López - 1061697969
+- Nicolás Ramírez González - 1023371323
+- Diana Margarita Castillo - 1011201869
+  
+## Índice
+
+  - Actividad 1: Verificación del entorno en FPGA (Smoke Test)
+      - Explicación del funcionamiento del código de prueba
+      - Montaje y ejecución del código
+      - Demostración
+      - Resultados
+  - Actividad 2: Prueba Funcional Personalizado (Diseño libre con criterios obligatorios)
+      - Explicación del funcionamiento del código creado
+      - Demostración ( GTKwave y video )
+      - Resultados
+  -Conclusiones
+
+## Actividad 1: Verificación del entorno en FPGA (Smoke Test)
+
+### 1.1 Explicación del funcionamiento del código de prueba:
+
+El diseño del código propuesto se basa en la creación de un semáforo cíclico simple. Esta máquina de estados finitos tipo Moore cuenta con cuatro estados que gestionan las transiciones de las luces (Verde, Amarillo, Rojo, y nuevamente Amarillo) en lapsos de tiempo sincronizados por un reloj. 
+Cada cambio de transición entre estados cuenta con un tiempo definido. Para el primer cambio de transición (verde-amarillo) el contador debe cumplir con un total de 5 ciclos de reloj, mientras que las transiciones posteriores deben cumplir 2 y 4 ciclos de reloj respectivamente.
+
+### 1.2 Montaje y ejecución del código:
+
+Para la implementación del diseño en la tarjeta FPGA Zybo Z7, primero se importó el archivo fuente .v del semáforo en el entorno AMD Vivado 2025.2. Posteriormente, se añadió el archivo de restricciones (constraints .xdc) correspondiente a la placa Zybo Z7 para realizar la asignación de pines y LEDs necesarios (En este caaso el led designado fue el RGB 6), permitiendo así la validación física del funcionamiento del código. 
+
+### 1.3 Demostración
+
+Aduntar video demostrativo
+
+## Actividad 2: Prueba Funcional Personalizado (Diseño libre con criterios obligatorios)
+
+### 2.1 Explicación del funcionamiento del código creado:
+
+El código propuesto se basa en la creación de una ALU (Unidad Aritmética Lógica) secuencial controlada a través de una máquina de estados finitos (FSM). Esta cumple la función de registrar dos números de cuatro bits ($A$ y $B$), ejecutar una operación aritmética (suma) o lógica (AND, OR, XOR), y desplegar el resultado a través de cuatro LEDs principales. Asimismo, utiliza un LED RGB para identificar visualmente la operación realizada durante el proceso. 
+
+Este código inicialmente sincroniza las señales de pulso de cada botón con la señal de reloj. Luego, utiliza la compuerta AND y la negación (s1 & ~s1_prev) para que el sistema genere un pulso preciso de un solo ciclo de reloj en el flanco de subida, esto con el fin de evitar lecturas erróneas por rebotes mecánicos.
+
+Posteriormente, la FSM gestiona la captura secuencial de datos a través de ventanas de tiempo (slots). En el estado inicial (IDLE), el sistema lee el operando $A$ desde los conmutadores (switches). Al presionar un botón, la máquina transiciona sucesivamente por los estados del 1 al 5 para almacenar bit a bit el operando $B$ y el código de operación (op). Cada ventana se mantiene activa hasta detectar el pulso del botón esperado o hasta que transcurre el tiempo límite marcado por un contador interno (c), garantizando un tiempo prudencial de espera.  
+
+### 2.2 Demostración ( GTKwave y video )
+
+
+
+
+
+
+
+
+
  
