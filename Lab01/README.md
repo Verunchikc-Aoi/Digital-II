@@ -52,7 +52,7 @@ Finalmente, en el estado de resultado (3'd6), la ALU evalúa la operación selec
 
 ### 2.2 Demostración ( GTKwave y video )
 
-Para la implementación física del código propuesto, se tuvo en cuenta las indicaciones previamente realizadas en el código de pruba. De modo que, primero se
+Para la implementación física del código propuesto, se tuvo en cuenta las indicaciones previamente realizadas en el código de prueba. De modo que, primero se importó en Vivado el archivo fuente .v del código junto con el archivo de restricciones (constraints .xdc) correspondiente a la placa Zybo Z7. Posteriormente se desiganarón 
 
 
 
