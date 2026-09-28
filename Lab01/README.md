@@ -1,0 +1,2 @@
+A tener en cuenta: 
+ 
