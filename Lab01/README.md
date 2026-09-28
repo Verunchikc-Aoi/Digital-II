@@ -48,6 +48,8 @@ Este código inicialmente sincroniza las señales de pulso de cada botón con la
 
 Posteriormente, la FSM gestiona la captura secuencial de datos a través de ventanas de tiempo (slots). En el estado inicial (IDLE), el sistema lee el operando $A$ desde los conmutadores (switches). Al presionar un botón, la máquina transiciona sucesivamente por los estados del 1 al 5 para almacenar bit a bit el operando $B$ y el código de operación (op). Cada ventana se mantiene activa hasta detectar el pulso del botón esperado o hasta que transcurre el tiempo límite marcado por un contador interno (c), garantizando un tiempo prudencial de espera.  
 
+Finalmente, en el estado de resultado (3'd6), la ALU evalúa la operación seleccionada (op) para enviar el resultado correspondiente a los cuatro LEDs principales. De forma simultánea, activa el LED RGB con un color característico (Rojo para AND, Verde para OR y Azul para XOR) para confirmar visualmente qué cálculo lógico fue procesado.
+
 ### 2.2 Demostración ( GTKwave y video )
 
 
