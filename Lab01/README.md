@@ -52,9 +52,7 @@ Finalmente, en el estado de resultado (3'd6), la ALU evalúa la operación selec
 
 ### 2.2 Demostración ( GTKwave y video )
 
-
-
-
+Para la implementación física del código propuesto, se tuvo en cuenta las indicaciones previamente realizadas en el código de pruba. De modo que, primero se
 
 
 
