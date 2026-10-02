@@ -1,6 +1,6 @@
 # Laboratorio 01 FPGA Zybo Z7 Vivado Vitis y Validación de Hardware
 
-<hr style="height: 4px; border: none; background-color: #c0f0f4;">
+<hr style="height: 4 px; border: none; background-color: #c0f0f4;">
 
 ### Integrantes 2026 - 2
 
@@ -16,7 +16,6 @@
       - Explicación del funcionamiento del código de prueba
       - Montaje y ejecución del código
       - Demostración
-      - Resultados
   - Actividad 2: Prueba Funcional Personalizado (Diseño libre con criterios obligatorios)
       - Explicación del funcionamiento del código creado
       - Demostración ( GTKwave y video )
