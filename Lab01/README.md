@@ -52,7 +52,20 @@ Finalmente, en el estado de resultado (3'd6), la ALU evalúa la operación selec
 
 ### 2.2 Demostración ( GTKwave y video )
 
-Para la implementación física del código propuesto, se tuvo en cuenta las indicaciones previamente realizadas en el código de prueba. De modo que, primero se importó en Vivado el archivo fuente .v del código junto con el archivo de restricciones (constraints .xdc) correspondiente a la placa Zybo Z7. Posteriormente se desiganarón 
+Para la implementación física del código propuesto, se tuvo en cuenta las indicaciones previamente realizadas en el código de prueba. De modo que, primero se importó en Vivado el archivo fuente .v del código junto con el archivo de restricciones (constraints .xdc) correspondiente a la placa Zybo Z7. Posteriormente se designaron cada unos de los switches, pulsadores y leds necesario para la demostración del diseño en la FPGA. En este caso fue necesario el uso de dos pulsadores externos dado que aunque la tarjeta Zybo Z7 cuenta con 6 botones físicos (4 de usuario y 2 de gestión del sistema/reset), el diseño asigna la entrada input [3:0] BTN exclusivamente a los 4 botones de usuario de la placa. De estos, la máquina de estados utiliza BTN[0] como pulsador de confirmación/selección y BTN[1] como pulsador de navegación. Adicionalmente, la pulsación de cualquiera de los botones de usuario (anyp) permite reiniciar la FSM una vez desplegado el resultado.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
