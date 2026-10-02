@@ -31,7 +31,8 @@ Cada cambio de transición entre estados cuenta con un tiempo definido. Para el 
 
 ### 1.2 Montaje y ejecución del código:
 
-Para la implementación del diseño en la tarjeta FPGA Zybo Z7, primero se importó el archivo fuente .v del semáforo en el entorno AMD Vivado 2025.2. Posteriormente, se añadió el archivo de restricciones (constraints .xdc) correspondiente a la placa Zybo Z7 para realizar la asignación de pines y LEDs necesarios (En este caaso el led designado fue el RGB 6), permitiendo así la validación física del funcionamiento del código. 
+Para la implementación del diseño en la tarjeta FPGA Zybo Z7, primero se importó el archivo fuente .v del semáforo en el entorno AMD Vivado 2025.2. Posteriormente, se añadió el archivo de restricciones (.xdc) correspondiente a la placa Zybo Z7 para realizar la asignación de pines y LEDs necesarios (En este caaso el led designado fue el RGB 6), permitiendo así la validación física del funcionamiento del código. 
+En este caso 
 
 ### 1.3 Demostración
 
