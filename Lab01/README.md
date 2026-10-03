@@ -63,7 +63,9 @@ Para la implementación física del código propuesto, se tuvo en cuenta las ind
 
 Posteriormente se designaron cada unos de los switches, pulsadores y leds necesario para la demostración del diseño en la FPGA. En este caso fue necesario el uso de dos pulsadores externos dado que aunque la tarjeta Zybo Z7 cuenta con 6 botones físicos, 2 de estos Están conectados a los pines MIO (Multiplexed I/O) del procesador ARM. Al estar aislados en la parte del procesador, no tienen conexión física directa con la matriz de la FPGA y no se pueden mapear mediante un archivo .xdc estándar.
 
-<video src="https://github.com/user-attachments/assets/9d49b719-46c8-4670-b216-d0392886bc8a" controls width="100%"></video>
+https://github.com/user-attachments/assets/db13b22e-9388-4043-9565-2212095b03c2
+
+
 
 ### Conclusiones
 
