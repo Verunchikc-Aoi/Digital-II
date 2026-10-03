@@ -65,11 +65,18 @@ Posteriormente se designaron cada unos de los switches, pulsadores y leds necesa
 
 https://github.com/user-attachments/assets/db13b22e-9388-4043-9565-2212095b03c2
 
-
-
 ### Conclusiones
 
+Acorde con las pruebas realizadas en la FPGA Zybo Z7 (Semáforo y ALU) se obtuvieron las siguientes conclusiones:
 
+#### Divisor de frecuencia:
+Para la implementación y funcionamiento del diseño ALU en la tajeta, fue necesario la creacion de un divisor de frecuencia ya que la FPGA Zybo Z7 operan con un reloj interno de 125 Mhz (125 millones de oscilaciones por segundo), 
+
+#### Tiempo de respuesta
+
+#### Designación de botones físicos
+
+#### 
 
 
 
