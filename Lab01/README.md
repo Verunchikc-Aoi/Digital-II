@@ -54,7 +54,7 @@ Finalmente, en el estado de resultado (3'd6), la ALU evalúa la operación selec
 #### GTKwave: 
 Previo a la demostración física de la ALU en la FPGA, se realizó la simulación del código en GTKwave. A continuación se muestran los resultados obtenidos:
 
-Adjuntar captura de imagen
+![Simulación de la ALU  en GTKwave](gtkwave/gtkwave_ALU.png)
 
 
 #### Vivado:
