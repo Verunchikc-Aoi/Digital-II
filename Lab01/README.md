@@ -19,7 +19,7 @@
   - Actividad 2: Prueba Funcional Personalizado (Diseño libre con criterios obligatorios)
       - Explicación del funcionamiento del código creado
       - Demostración ( GTKwave y video )
-  -Conclusiones
+      - Conclusiones
 
 ## Actividad 1: Verificación del entorno en FPGA (Smoke Test)
 
