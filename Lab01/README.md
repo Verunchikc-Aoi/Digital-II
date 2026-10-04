@@ -78,8 +78,9 @@ Para llevar a cabo las pruebas físicas del diseño de la ALU, se requirió impl
 #### Designación de botones físicos
 Debido a que la placa FPGA utilizada cuenta con seis botones integrados, de los cuales dos no son de propósito general (no programables), fue necesario implementar dos pulsadores externos. Para garantizar su correcto funcionamiento durante los estados de corto y saturación, estos se configuraron habilitando la resistencia de PULLDOWN dentro del archivo de restricciones .xdc.
 
+#### Diferencia entre la simulación y la implementación física
 
-
+El desarrollo del proyecto evidenció la diferencia crítica entre la simulación de hardware y su implementación física. Mientras que en entornos de simulación, como el de Vivado, es posible analizar y validar el comportamiento de la ALU a su frecuencia nominal, la implementación en la tarjeta exigió adaptar el diseño al mundo real. El uso de resistencias pull-down para los pulsadores y de divisores de frecuencia para la visualización demuestra que el diseño digital no solo requiere lógica funcional, sino también acondicionamiento de señales para interactuar adecuadamente con el usuario.
 
 
 
