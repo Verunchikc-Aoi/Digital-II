@@ -76,7 +76,7 @@ Para la implementación y funcionamiento del diseño ALU en la tarjeta, fue nece
 
 
 #### Designación de botones físicos
-A lo largo del informe se mencionó el uso de dos pulsadores externos,los cuales se tuvieron que implementar y designar mediante la función PULLDOWN true en el documento .xdc (Para que este funcionará en los estados de corto y saturación). Lo anterior debido a que la estructura de la FPGA contaba con 6 botones pero dos de ellos no eran programables.
+Debido a que la placa FPGA utilizada cuenta con seis botones integrados, de los cuales dos no son de propósito general (no programables), fue necesario implementar dos pulsadores externos. Para garantizar su correcto funcionamiento durante los estados de corto y saturación, estos se configuraron habilitando la resistencia de PULLDOWN dentro del archivo de restricciones .xdc.
 
 
 
