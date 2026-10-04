@@ -16,10 +16,10 @@
       - [Explicación del funcionamiento del código de prueba](#11-explicación-del-funcionamiento-del-código-de-prueba)
       - [Montaje y ejecución del código](#12-montaje-y-ejecución-del-código)
       - [Demostración](#13-demostración)
-  - Actividad 2: Prueba Funcional Personalizado (Diseño libre con criterios obligatorios)
-      - Explicación del funcionamiento del código creado
-      - Demostración ( GTKwave y video )
-      - Conclusiones
+  - [Actividad 2: Prueba Funcional Personalizado (Diseño libre con criterios obligatorios)](#actividad-2-prueba-funcional-personalizado-diseño-libre-con-criterios-obligatorios)
+      - [Explicación del funcionamiento del código creado](#21-explicación-del-funcionamiento-del-código-creado)
+      - [Demostración (GTKwave y video)](#22-demostración-gtkwave-y-video)
+      - [Conclusiones](#conclusiones)
 
 ## Actividad 1: Verificación del entorno en FPGA Smoke Test
 
@@ -49,7 +49,7 @@ Posteriormente, la FSM gestiona la captura secuencial de datos a través de vent
 
 Finalmente, en el estado de resultado (3'd6), la ALU evalúa la operación seleccionada (op) para enviar el resultado correspondiente a los cuatro LEDs principales. De forma simultánea, activa el LED RGB con un color característico (Rojo para AND, Verde para OR y Azul para XOR) para confirmar visualmente qué cálculo lógico fue procesado.
 
-### 2.2 Demostración ( GTKwave y video )
+### 2.2 Demostración (GTKwave y video)
 
 #### GTKwave: 
 Previo a la demostración física de la ALU en la FPGA, se realizó la simulación del código en GTKwave. A continuación se muestran los resultados obtenidos:
