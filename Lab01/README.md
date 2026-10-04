@@ -70,7 +70,7 @@ https://github.com/user-attachments/assets/db13b22e-9388-4043-9565-2212095b03c2
 Acorde con las pruebas realizadas en la FPGA Zybo Z7 (Semáforo y ALU) se obtuvieron las siguientes conclusiones:
 
 #### Divisor de frecuencia:
-Para la implementación y funcionamiento del diseño ALU en la tarjeta, fue necesaria la creación de un divisor de frecuencia, ya que la FPGA Zybo Z7 operaba con un reloj interno de 125 Mhz (125 millones de oscilaciones por segundo), lo cual dificultaba a nivel perceptivo el funcionamiento de las operaciones durante las pruebas físicas.
+Para llevar a cabo las pruebas físicas del diseño de la ALU, se requirió implementar un divisor de frecuencia. Dado que la tarjeta de desarrollo Zybo Z7 opera con un reloj principal de 125 MHz, la ejecución de las instrucciones ocurría a una velocidad que excedía la capacidad de percepción visual humana, haciendo imposible la correcta verificación de los resultados en la placa sin reducir previamente la frecuencia de trabajo.
 
 #### Tiempo de respuesta
 
