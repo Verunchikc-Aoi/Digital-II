@@ -76,8 +76,10 @@ Para la implementación y funcionamiento del diseño ALU en la tarjeta, fue nece
 
 
 #### Designación de botones físicos
+A lo largo de la informo se mencionó el uso de dos pulsadores externos que se tuvieron que implementar y designar mediante la función .....en el documento .xdc 
 
-#### 
+debido 
+
 
 
 
