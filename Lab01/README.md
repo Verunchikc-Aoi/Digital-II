@@ -13,9 +13,9 @@
 ## Índice
 
   - [Actividad 1: Verificación del entorno en FPGA (Smoke Test)](#actividad-1-verificación-del-entorno-en-fpga-smoke-test)
-      - [Explicación del funcionamiento del código de prueba](#explicación-del-funcionamiento-del-código-de-prueba)
-      - Montaje y ejecución del código
-      - Demostración
+      - [Explicación del funcionamiento del código de prueba](#11-explicación-del-funcionamiento-del-código-de-prueba)
+      - [Montaje y ejecución del código](#12-montaje-y-ejecución-del-código)
+      - [Demostración](#13-demostración)
   - Actividad 2: Prueba Funcional Personalizado (Diseño libre con criterios obligatorios)
       - Explicación del funcionamiento del código creado
       - Demostración ( GTKwave y video )
