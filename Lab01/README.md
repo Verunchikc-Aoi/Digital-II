@@ -73,6 +73,7 @@ Acorde con las pruebas realizadas en la FPGA Zybo Z7 (Semáforo y ALU) se obtuvi
 Para llevar a cabo las pruebas físicas del diseño de la ALU, se requirió implementar un divisor de frecuencia. Dado que la tarjeta de desarrollo Zybo Z7 opera con un reloj principal de 125 MHz, la ejecución de las instrucciones ocurría a una velocidad que excedía la capacidad de percepción visual humana, haciendo imposible la correcta verificación de los resultados en la placa sin reducir previamente la frecuencia de trabajo.
 
 #### Tiempo de respuesta
+Durante las pruebas físicas se observó que el sistema omitía las instrucciones si los botones se oprimían de forma demasiado rápida. Esto concluye la importancia de la sincronización de señales en sistemas digitales: dado que el circuito operaba con un reloj de frecuencia reducida (divisor de frecuencia), las señales de entrada de los botones debían mantenerse en estado alto el tiempo suficiente para ser capturadas por el flanco de subida del reloj activo. De lo contrario, la pulsación ocurría entre ciclos de reloj y el sistema no lograba registrarla.
 
 
 #### Designación de botones físicos
