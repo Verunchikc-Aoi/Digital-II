@@ -12,8 +12,8 @@
   
 ## Índice
 
-  - Actividad 1: Verificación del entorno en FPGA (Smoke Test)
-      - Explicación del funcionamiento del código de prueba
+  - [Actividad 1: Verificación del entorno en FPGA (Smoke Test)](#actividad-1-verificación-del-entorno-en-fpga-smoke-test)
+      - [Explicación del funcionamiento del código de prueba](#explicación-del-funcionamiento-del-código-de-prueba)
       - Montaje y ejecución del código
       - Demostración
   - Actividad 2: Prueba Funcional Personalizado (Diseño libre con criterios obligatorios)
@@ -21,9 +21,9 @@
       - Demostración ( GTKwave y video )
       - Conclusiones
 
-## Actividad 1: Verificación del entorno en FPGA (Smoke Test)
+## Actividad 1: Verificación del entorno en FPGA Smoke Test
 
-### 1.1 Explicación del funcionamiento del código de prueba:
+### 1.1 Explicación del funcionamiento del código de prueba
 
 El diseño del código propuesto se basa en la creación de un semáforo cíclico simple. Esta máquina de estados finitos tipo Moore cuenta con cuatro estados que gestionan las transiciones de las luces (Verde, Amarillo, Rojo, y nuevamente Amarillo) en lapsos de tiempo sincronizados por un reloj. 
 Cada cambio de transición entre estados cuenta con un tiempo definido. Para el primer cambio de transición (verde-amarillo) el contador debe cumplir con un total de 5 ciclos de reloj, mientras que las transiciones posteriores deben cumplir 2 y 4 ciclos de reloj respectivamente.
