@@ -76,9 +76,8 @@ Para la implementación y funcionamiento del diseño ALU en la tarjeta, fue nece
 
 
 #### Designación de botones físicos
-A lo largo de la informo se mencionó el uso de dos pulsadores externos que se tuvieron que implementar y designar mediante la función .....en el documento .xdc 
+A lo largo del informe se mencionó el uso de dos pulsadores externos,los cuales se tuvieron que implementar y designar mediante la función PULLDOWN true en el documento .xdc (Para que este funcionará en los estados de corto y saturación). Lo anterior debido a que la estructura de la FPGA contaba con 6 botones pero dos de ellos no eran programables.
 
-debido 
 
 
 
