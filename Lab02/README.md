@@ -48,7 +48,7 @@ La arquitectura del sistema está compuesta por los siguientes bloques funcional
 
 - **Unidad de Control (FSM):** Secuenciador secuencial de 6 estados que gestiona la captura de datos, la prevención de falsos disparos por botones y la transición del flujo de ejecución.
   
-  <img src="assets/fsm.png" width="600" alt="Máquina de Estados Finitos">
+  <img src="assets/FSM.png" width="600" alt="Máquina de Estados Finitos">
 
 - **Registros de Almacenamiento:** Registros internos dedicados a mantener estables los valores de los operandos `A` (4 bits), `B` (4 bits) y el código de operación `modo` (2 bits).
 - **Bloque Combinacional de la ALU:** Módulo encargado de realizar las operaciones aritméticas (suma y resta) y lógicas (AND y OR bit a bit) entre los operandos `A` y `B`.
