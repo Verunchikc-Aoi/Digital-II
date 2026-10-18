@@ -21,6 +21,7 @@
     - [Entradas y Salidas del Módulo `ALU2`](#entradas-y-salidas-del-módulo-alu2)
     - [Descripción de los Estados de la FSM](#descripción-de-los-estados-de-la-fsm)
     - [Lógica de Salida](#lógica-de-salida)
+    - [Módulo `debounce`](#módulo-debounce)
 - [Forma en que se Almacenan los Operandos](#forma-en-que-se-almacenan-los-operandos)
 - [Forma en que se Conserva el Código de Operación](#forma-en-que-se-conserva-el-código-de-operación)
 - [Operaciones Implementadas](#operaciones-implementadas)
@@ -36,8 +37,8 @@
 El sistema consiste en una **Unidad Aritmético Lógica (ALU) de 4 bits** controlada mediante una **Máquina de Estados Finitos (FSM)** de 6 estados. 
 
 El flujo de operación es el siguiente:
-1. El usuario ingresa y almacena secuencialmente dos operandos de 4 bits (`A` y `B`) utilizando los conmutadores (`sw`) y los botones de control (`btn`).
-2. Una vez guardados los datos, se selecciona la operación a realizar con mutando los bits de la variable `modo` mediante botones.
+1. El usuario ingresa y almacena secuencialmente dos operandos de 4 bits (`A` y `B`) utilizando los conmutadores (`sw`) y los botones de control (`btnCrudo`), cuyas señales son filtradas por el módulo `debounce` antes de llegar a la FSM.
+2. Una vez guardados los datos, se selecciona la operación a realizar conmutando los bits de la variable `modo` mediante botones.
 3. El resultado final de la operación seleccionada se visualiza directamente en los LEDs (`led`), mientras que el LED RGB (`rgb`) indica mediante un código de colores la operación matemática o lógica que se está ejecutando.
 
 ---
@@ -46,6 +47,7 @@ El flujo de operación es el siguiente:
 
 La arquitectura del sistema está compuesta por los siguientes bloques funcionales:
 
+- **Acondicionamiento de Botones (`debounce`):** Cuatro instancias del módulo `debounce` (una por botón) que sincronizan la entrada, eliminan el rebote mecánico y entregan un pulso de un solo ciclo de reloj por cada pulsación.
 - **Unidad de Control (FSM):** Secuenciador secuencial de 6 estados que gestiona la captura de datos, la prevención de falsos disparos por botones y la transición del flujo de ejecución.
   
   <img src="assets/FSM.png" width="600" alt="Máquina de Estados Finitos">
@@ -66,7 +68,7 @@ La arquitectura del sistema está compuesta por los siguientes bloques funcional
 | :--- | :---: | :---: | :--- |
 | `clk` | Entrada | 1 | Reloj principal del sistema. |
 | `sw` | Entrada | 4 | Conmutadores (switches) para el ingreso de datos. |
-| `btn` | Entrada | 4 | Botones de control para navegación de la FSM y selección de modo. |
+| `btnCrudo` | Entrada | 4 | Botones físicos sin filtrar. Cada uno pasa por un `debounce`, que genera la señal interna `btn[3:0]` (pulso de un ciclo) usada por la FSM para navegación y selección de modo. |
 | `led` | Salida | 4 | LEDs para visualización de entrada en tiempo real o resultado de la ALU. |
 | `rgb` | Salida | 3 | LED RGB para indicación del modo de operación seleccionado. |
 
@@ -85,6 +87,8 @@ La FSM consta de 6 estados principales gestionados en el bloque secuencial:
   - Si se presiona `btn[0]` o `btn[1]`, transiciona hacia el Estado 5 para iniciar el reinicio del flujo.
 - **Estado 5 (`3'd5`):** Espera a que se liberen completamente los botones `btn[0]` y `btn[1]` para reiniciar la FSM al Estado 0.
 
+> Como `debounce` entrega `btn[x]` como un pulso de un solo ciclo de reloj, los Estados 1, 3 y 5 (que esperan la liberación del botón) duran en la práctica un único ciclo, por lo que en la forma de onda se ven como cambios casi instantáneos de `estado`.
+
 ---
 
 ### Lógica de Salida
@@ -96,11 +100,29 @@ La asignación de las salidas es puramente combinacional (`always @(*)`):
 
 ---
 
+### Módulo `debounce`
+
+Módulo auxiliar instanciado cuatro veces dentro de `ALU2` (`DB1` a `DB4`), una por cada bit de `btnCrudo`. Su funcionamiento es el siguiente:
+
+1. **Sincronizador:** dos flip-flops en serie (`s0`, `s1`) llevan la señal asíncrona del botón al dominio del reloj.
+2. **Filtro de rebote:** un contador (`cnt`) se incrementa mientras la señal sincronizada `s1` sea distinta del valor filtrado `stable`. Si `s1` vuelve a coincidir con `stable`, el contador se reinicia. Solo cuando `s1` se mantiene distinto durante `CNT_MAX` ciclos consecutivos, `stable` toma el nuevo valor.
+3. **Generación del pulso:** en el instante en que `stable` pasa a 1 (flanco de subida filtrado), `pulse` se activa durante un único ciclo de reloj. La liberación del botón no genera pulso.
+
+| Señal | Tipo | Ancho de Bit | Descripción |
+| :--- | :---: | :---: | :--- |
+| `clk` | Entrada | 1 | Reloj principal del sistema. |
+| `btn_in` | Entrada | 1 | Botón sin filtrar (`btnCrudo[x]`). |
+| `pulse` | Salida | 1 | Pulso de un ciclo por cada pulsación válida (`btn[x]`). |
+
+El parámetro `CNT_MAX = 1_250_000` equivale a unos 10 ms con un reloj de 125 MHz.
+
+---
+
 # Forma en que se Almacenan los Operandos
 
 Los operandos se almacenan de forma síncrona en **registros internos tipo Flip-Flop D** de 4 bits (`reg [3:0] A` y `reg [3:0] B`). 
 
-- La captura del **Operando A** ocurre en el **Estado 0** en el flanco de subida de reloj (`posedge clk`) cuando la señal `btn[0]` está activa (`A <= sw`).
+- La captura del **Operando A** ocurre en el **Estado 0** en el flanco de subida de reloj (`posedge clk`) cuando la señal `btn[0]` (pulso ya filtrado por `debounce`) está activa (`A <= sw`).
 - La captura del **Operando B** ocurre en el **Estado 2** de forma equivalente mediante la señal `btn[1]` (`B <= sw`).
 
 ---
@@ -113,7 +135,7 @@ En el **Estado 4**, la operación deseada se configura conmutando (negando) sus 
 - Presionar `btn[2]` conmuta el bit de menor peso (`modo[0] <= ~modo[0]`).
 - Presionar `btn[3]` conmuta el bit de mayor peso (`modo[1] <= ~modo[1]`).
 
-El valor se mantiene retenido en este registro hasta que se vuelva a modificar manualmente o se fuerce un reinicio de la FSM (vía bloque `default`).
+El valor se mantiene retenido en este registro hasta que se vuelva a modificar manualmente con estos botones. Al terminar el flujo (Estado 5 → Estado 0) el registro `modo` **no** se reinicia, por lo que al cargar nuevos operandos se conserva la última operación seleccionada. El bloque `default` de la FSM (que pone `estado`, `A`, `B` y `modo` en 0) solo se ejecuta si `estado` toma un valor no válido (6, 7 o indefinido al inicio de la simulación); no es alcanzable mediante los botones.
 
 ---
 
@@ -124,13 +146,13 @@ El valor se mantiene retenido en este registro hasta que se vuelva a modificar m
 | **Suma** | `A + B` | `2'b00` (`0`) | `3'b010` | Verde (G) |
 | **Resta** | `A - B` | `2'b01` (`1`) | `3'b001` | Azul (B) |
 | **AND** | `A & B` | `2'b10` (`2`) | `3'b100` | Rojo (R) |
-| **OR** | `A \| B` | `2'b11` (`3`) | `3'b111` | Blanco / Magenta / Cyan (RGB) |
+| **OR** | `A \| B` | `2'b11` (`3`) | `3'b111` | Blanco (RGB) |
 
 ---
 
 # Simulación GTKWave
 
-<img src="assets/wave.png" width="600" alt="Máquina de Estados Finitos">
+<img src="assets/wave.png" width="600" alt="Forma de onda">
 
 [Codigo simulación](codigos/códigos/TBALU2.v)
 
@@ -138,9 +160,9 @@ El valor se mantiene retenido en este registro hasta que se vuelva a modificar m
 
 # Comportamiento Observado Durante la Simulación
 
-<img src="assets/wavecompleta.png" width="600" alt="Máquina de Estados Finitos">
+<img src="assets/wavecompleta.png" width="600" alt="Forma de onda completa">
 
-> En la forma de onda se observa el proceso de captura de los operandos `A` y `B`, cuyos valores cargados mediante los switches (`sw`) se visualizan en el bus `led[3:0]`. Posteriormente, se evidencia cómo la FSM transiciona de estado mediante los pulsos de los botones `btn[2]` y `btn[3]`, modificando de forma secuencial el registro `modo[1:0]` (operaciones Suma 00, Resta 01, OR 11 y AND 10). A su vez, el LED RGB (`rgb[2:0]`) actualiza su color para reflejar la operación activa en cada intervalo.
+> En la forma de onda se observa el proceso de captura de los operandos `A` y `B`: mientras la FSM está en los Estados 0 a 3, el bus `led[3:0]` sigue a los switches (`sw`), y los pulsos de `btn[0]` y `btn[1]` cargan `A = 0011` y `B = 0101`. Cada pulso de `btn[x]` aparece unos ciclos después de que sube `btnCrudo[x]`, por el tiempo que tarda el `debounce` en validar la pulsación. Posteriormente, con la FSM en el Estado 4, los pulsos de `btn[2]` y `btn[3]` modifican de forma secuencial el registro `modo[1:0]` (operaciones Suma 00, Resta 01, OR 11 y AND 10). A su vez, el LED RGB (`rgb[2:0]`) actualiza su color y `led` muestra el resultado (8, E, 7 y 1 respectivamente) para reflejar la operación activa en cada intervalo.
 
 
 ---
@@ -153,70 +175,84 @@ El valor se mantiene retenido en este registro hasta que se vuelva a modificar m
 
 # Errores
 
-Al implementar la ALU en la FPGA con la señal de reloj principal del sistema, se observaron breves destellos indeseados (glitches) en el led RGB las transiciones de estado. Este fenómeno ocurre porque la FSM evalúa las entradas de los botones (btn) en cada flanco activo sin un mecanismo de sincronización o filtrado previo. Dado que los pulsadores mecánicos generan múltiples oscilaciones metálicas al ser presionados (efecto rebote), la FSM a alta frecuencia interpreta estas vibraciones como múltiples pulsaciones consecutivas en cuestión de microsegundos, causando saltos de estado imprevistos y estados transitorios visibles en los LEDs.
+Al implementar la ALU en la FPGA con la señal de reloj principal del sistema, se observaron breves destellos indeseados (glitches) en el led RGB durante las transiciones de estado. Este fenómeno ocurre porque la FSM evalúa las entradas de los botones (btn) en cada flanco activo sin un mecanismo de sincronización o filtrado previo. Dado que los pulsadores mecánicos generan múltiples oscilaciones metálicas al ser presionados (efecto rebote), la FSM a alta frecuencia interpreta estas vibraciones como múltiples pulsaciones consecutivas en cuestión de microsegundos, causando saltos de estado imprevistos y estados transitorios visibles en los LEDs.
 
-En la simulación con Icarus Verilog y GTKWave, aunque no existe el rebote mecánico, se presentó una limitación estricta debido a la estructura jerárquica de la FSM y la duración de los estímulos para alcanzar el registro `modo = 11` (OR). En el Estado 4, la conmutación de los bits de modo se realiza mediante asignaciones no bloqueantes (<=) condicionadas por una cadena `else-if`:   
+Para corregirlo se agregó el módulo `debounce` (ver [Módulo `debounce`](#módulo-debounce)): la FSM ya no lee el botón físico `btnCrudo[x]`, sino la señal `btn[x]`, que es un pulso de un solo ciclo generado solo después de que el botón permanece estable `CNT_MAX` ciclos.
 
-```Verilogelse 
-if (btn[2]) modo[0] <= ~modo[0];
-else if (btn[3]) modo[1] <= ~modo[1];
+En la simulación con Icarus Verilog y GTKWave no existe el rebote mecánico, pero la estructura de la FSM impone una restricción sobre la duración de la señal que recibe. En el Estado 4, la conmutación de los bits de modo se realiza mediante asignaciones no bloqueantes (<=) condicionadas por una cadena `else-if`:
+
+```verilog
+3'd4: if (btn[0] | btn[1]) estado <= 3'd5;
+      else if (btn[2]) modo[0] <= ~modo[0];
+      else if (btn[3]) modo[1] <= ~modo[1];
 ```
 
-Si el pulso asignado a `btn[3]` en el testbench permanece activo durante más de un ciclo completo de reloj, la FSM vuelve a evaluar y negar la señal modo[1] en el siguiente flanco ascendente, provocando que el registro regrese inmediatamente de 11 a 01 antes de poder estabilizarse y graficarse. 
+Si la señal `btn[3]` permaneciera activa durante más de un ciclo completo de reloj, la FSM volvería a negar `modo[1]` en el siguiente flanco ascendente, provocando que el registro regrese inmediatamente de 11 a 01 antes de poder estabilizarse y graficarse. Este caso no ocurre en el diseño final porque `debounce` entrega siempre un único ciclo de pulso, sin importar cuánto tiempo se mantenga presionado el botón.
 
-La solución en el entorno de simulación consistió en estructurar el testbench utilizando bloques temporales exactos (`#10` o `@(posedge clk)` seguidos de la limpieza inmediata del bus btn = 4'b0000), garantizando que cada botón se active durante un único flanco de reloj y permitiendo la acumulación limpia de los bits hasta obtener el modo 11 y posteriormente el 10.   
+Esto tiene una consecuencia directa sobre el testbench: como el pulso solo se genera después de ver el botón estable durante `CNT_MAX` ciclos (1 250 000 en hardware), un estímulo de pocos nanosegundos (por ejemplo `#10`) nunca produce un `btn[x]`. Por eso en `TBALU2.v`:
+
+- Se reduce `CNT_MAX` a 5 en las cuatro instancias mediante `defparam` (`uut.DB1.CNT_MAX` a `uut.DB4.CNT_MAX`), solo para la simulación, evitando simular más de 12 ms por cada pulsación.
+- Cada botón de `btnCrudo` se mantiene 200 ns en alto y 200 ns en bajo (20 ciclos, mayor que `CNT_MAX`), de modo que `debounce` detecte tanto la pulsación como la liberación; sin la liberación, `stable` quedaría en 1 y la siguiente pulsación del mismo botón no se reconocería.
+
+Con esto cada pulsación genera exactamente un pulso de un ciclo en `btn[x]`, permitiendo la acumulación limpia de los bits hasta obtener el modo 11 y posteriormente el 10.
 
 
 
 ## Código punto 
 ```verilog
-// Módulo ALU2: Unidad Aritmético Lógica de 4 bits controlada por una Máquina de Estados Finitos (FSM)
 module ALU2 (
-    input clk,          // Reloj del sistema
-    input [3:0] sw,     // Interruptores de entrada (para ingresar operandos A y B)
-    input [3:0] btn,    // Botones de control (transición de estados y cambio de modo)
-    output reg [3:0] led, // Salida de LEDs (muestra switches o resultado de la operación)
-    output reg [2:0] rgb  // Salida para LED RGB (indica la operación actual)
+    input clk,
+    input [3:0] sw,
+    input [3:0] btnCrudo,
+    output reg [3:0] led,
+    output reg [2:0] rgb
 );
-    // Registros internos de la máquina de estados y operandos
-    reg [2:0] estado; // Estado actual de la FSM (0 a 5)
-    reg [3:0] A;      // Registro para el primer operando
-    reg [3:0] B;      // Registro para el segundo operando
-    reg [1:0] modo;   // Selector de operación ALU (0: Suma, 1: Resta, 2: AND, 3: OR)
+    reg [2:0] estado;
+    reg [3:0] A;
+    reg [3:0] B;
+    reg [1:0] modo;
+    wire [3:0] btn;
 
-    // Lógica secuencial (FSM): Captura de operandos, cambio de modo y transición de estados
+    debounce DB1 (
+        .clk   (clk),
+        .btn_in(btnCrudo[0]),
+        .pulse (btn[0])
+    );
+
+    debounce DB2 (
+        .clk   (clk),
+        .btn_in(btnCrudo[1]),
+        .pulse (btn[1])
+    );
+
+    debounce DB3 (
+        .clk   (clk),
+        .btn_in(btnCrudo[2]),
+        .pulse (btn[2])
+    );
+
+    debounce DB4 (
+        .clk   (clk),
+        .btn_in(btnCrudo[3]),
+        .pulse (btn[3])
+    );
+
     always @(posedge clk) begin
         case (estado)
-            // Estado 0: Espera la pulsación de btn[0] para capturar el operando A desde los switches
             3'd0: if (btn[0]) begin
                 A <= sw;
                 estado <= 3'd1;
             end
-            
-            // Estado 1: Anti-rebote/espera a que se libere btn[0]
             3'd1: if (!btn[0]) estado <= 3'd2;
-            
-            // Estado 2: Espera la pulsación de btn[1] para capturar el operando B desde los switches
             3'd2: if (btn[1]) begin
                 B <= sw;
                 estado <= 3'd3;
             end
-            
-            // Estado 3: Anti-rebote/espera a que se libere btn[1]
             3'd3: if (!btn[1]) estado <= 3'd4;
-            
-            // Estado 4: Modo de ejecución / Selección de operación
-            // - Presionar btn[0] o btn[1] avanza al estado 5 para reiniciar el flujo.
-            // - Presionar btn[2] conmuta el bit inferior de modo (modo[0]).
-            // - Presionar btn[3] conmuta el bit superior de modo (modo[1]).
             3'd4: if (btn[0] | btn[1]) estado <= 3'd5;
                 else if (btn[2]) modo[0] <= ~modo[0];
                 else if (btn[3]) modo[1] <= ~modo[1];
-            
-            // Estado 5: Espera a que se liberen btn[0] y btn[1] para reiniciar la FSM al estado 0
             3'd5: if (!(btn[0] | btn[1])) estado <= 3'd0;
-            
-            // Estado por defecto: Reinicia las señales si ocurre un estado inválido
             default: begin
                 estado <= 0;
                 A <= 0;
@@ -226,31 +262,27 @@ module ALU2 (
         endcase
     end
 
-    // Lógica combinacional: Salidas para los LEDs y el LED RGB según el estado y el modo
     always @(*) begin
-        rgb = 0; // Valor por defecto del RGB
+        rgb = 0;
         case (estado)
-            // En los estados 0 a 3, los LEDs reflejan directamente la posición actual de los switches
             3'd0, 3'd1, 3'd2, 3'd3: led = sw;
-            
-            // En los estados 4 y 5, los LEDs muestran el resultado de la ALU según 'modo'
             3'd4, 3'd5: begin
                 case (modo)
-                    2'd0: begin // Operación: Suma (A + B)
+                    2'd0: begin
                         led = A+B;
-                        rgb = 3'b010; // Color RGB para Suma
+                        rgb = 3'b010;
                     end
-                    2'd1: begin // Operación: Resta (A - B)
+                    2'd1: begin
                         led = A-B;
-                        rgb = 3'b001; // Color RGB para Resta
+                        rgb = 3'b001;
                     end
-                    2'd2: begin // Operación: AND bit a bit (A & B)
+                    2'd2: begin
                         led = A&B;
-                        rgb = 3'b100; // Color RGB para AND
+                        rgb = 3'b100;
                     end
-                    2'd3: begin // Operación: OR bit a bit (A | B)
+                    2'd3: begin
                         led = A|B;
-                        rgb = 3'b111; // Color RGB para OR
+                        rgb = 3'b111;
                     end
                     default: begin
                         led = A+B;
@@ -258,8 +290,6 @@ module ALU2 (
                     end 
                 endcase
             end
-            
-            // Estado por defecto para la lógica combinacional de salida
             default: begin
                 led = 0;
                 rgb = 0;
@@ -267,5 +297,6 @@ module ALU2 (
         endcase
     end
 endmodule
+
 ```
 
